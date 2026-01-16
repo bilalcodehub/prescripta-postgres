@@ -1,0 +1,5 @@
+# PostgreSQL data directory (persists locally, don't commit)
+pgdata/
+
+# Environment file with secrets
+.env
