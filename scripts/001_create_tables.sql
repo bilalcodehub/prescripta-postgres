@@ -17,7 +17,16 @@ CREATE TABLE bnf_categories (
 CREATE TABLE error_codes (
     id SERIAL PRIMARY KEY,
     code VARCHAR(50) UNIQUE NOT NULL,
-    description TEXT NOT NULL
+    description TEXT NOT NULL,
+    examples TEXT
+);
+
+-- Latin Codes (56 prescription abbreviations)
+CREATE TABLE latin_codes (
+    id SERIAL PRIMARY KEY,
+    code VARCHAR(20) UNIQUE NOT NULL,
+    description TEXT NOT NULL,
+    examples TEXT
 );
 
 -- Drugs (DMD code to BNF mapping)
