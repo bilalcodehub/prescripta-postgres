@@ -1,11 +1,10 @@
 -- Seed Data for Prescripta Database
--- 48 Error Codes + Sample BNF Categories + Severity Matrix
+-- 48 Error Codes + 244 BNF Categories + Severity Matrix
 
 -- ===========================================
 -- ERROR CODES (48 total)
 -- ===========================================
 
--- Paraphrase Flags (44)
 INSERT INTO error_codes (code, description) VALUES
 ('DRUG_NAME_IN_DIRECTION', 'Drug name appears in dosage directions (should not)'),
 ('DISPENSING_TEXT_IN_DIRECTION', 'Dispensing/supply text leaked into dosage directions'),
@@ -50,21 +49,14 @@ INSERT INTO error_codes (code, description) VALUES
 ('LATIN_CODE_ASSUMED', 'Latin/abbrev meaning introduced where none existed'),
 ('SPELLING_ERROR', 'Spelling/typo error reduces clarity'),
 ('ORIGINAL_DOSAGE_UNCLEAR', 'Original dosage direction too unclear to translate'),
-('UNSUPPORTED_SYNTAX', 'Instruction too complex; meaning lost or distorted');
-
--- Safety Flags (3)
-INSERT INTO error_codes (code, description) VALUES
+('UNSUPPORTED_SYNTAX', 'Instruction too complex; meaning lost or distorted'),
 ('DOSAGE_CHECK_OVERDOSE', 'Prescribed dose exceeds maximum limit'),
 ('DOSAGE_CHECK_UNDERDOSE', 'Prescribed dose below minimum limit'),
-('DOSAGE_CHECK_INCONCLUSIVE', 'Unable to determine if dose is safe');
-
--- Explicit Review Flag (1)
-INSERT INTO error_codes (code, description) VALUES
+('DOSAGE_CHECK_INCONCLUSIVE', 'Unable to determine if dose is safe'),
 ('PHARMACIST_REVIEW_REQUESTED', 'Explicit review requested by prescriber');
 
-
 -- ===========================================
--- BNF CATEGORIES (from provided list)
+-- BNF CATEGORIES (244 from provided list)
 -- ===========================================
 
 INSERT INTO bnf_categories (code, name, parent_code) VALUES
@@ -313,12 +305,11 @@ INSERT INTO bnf_categories (code, name, parent_code) VALUES
 ('150104', 'Sedative and analgesic perioperative drugs', NULL),
 ('150200', 'Local Anaesthesia', NULL);
 
-
 -- ===========================================
 -- FLAG SEVERITY INDEX (all BNF × all Error Codes, default RED)
 -- ===========================================
 
-INSERT INTO flag_severity (bnf_code, error_code, is_red_flag)
-SELECT b.code, e.code, TRUE
+INSERT INTO flag_severity (bnf_id, error_id, is_red_flag)
+SELECT b.id, e.id, TRUE
 FROM bnf_categories b
 CROSS JOIN error_codes e;
