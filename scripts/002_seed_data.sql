@@ -121,7 +121,7 @@ INSERT INTO latin_codes (code, description, examples) VALUES
 -- BNF CATEGORIES (244 from provided list)
 -- ===========================================
 
-INSERT INTO bnf_categories (code, name, parent_code) VALUES
+INSERT INTO bnf_categories (code, name, parent_id) VALUES
 ('10101', 'Antacids and simeticone', NULL),
 ('10102', 'Compound alginates and proprietary indigestion preparations', NULL),
 ('10200', 'Antispasmodics and other drugs altering gut motility', NULL),
