@@ -1,5 +1,8 @@
-# PostgreSQL data directory (persists locally, don't commit)
+# Environment (contains credentials)
+.env
+
+# PostgreSQL data directory
 pgdata/
 
-# Environment file with secrets
-.env
+# Backups (may be large)
+backups/
